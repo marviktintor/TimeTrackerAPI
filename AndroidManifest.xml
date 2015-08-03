@@ -1,0 +1,80 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.marvik.api.timetracker"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.marvik.api.timetracker.test.TimeSpent"
+            android:label="TimeSpent" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.marvik.api.timetracker.tracker.view.TimeSpentAnalytics"
+            android:label="TimeSpentAnalytics" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.marvik.api.timetracker.activity.TimeTrackedActivity"
+            android:label="TimeTrackedActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.marvik.api.timetracker.receiver.Receiver" >
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_CREATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_RESUME" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_PAUSE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_DESTROY" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.marvik.api.timetracker.services.TrackerService" >
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_CREATED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_RESUMED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_PAUSED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.marvik.api.timetracker.ACTIVITY_ACTION_DESTROYED" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="com.marvik.api.timetracker.provider.StatisticsProvider"
+            android:authorities="com.marvik.api.timetracker.provider.StatisticsProvider"
+            android:exported="false" >
+        </provider>
+    </application>
+
+</manifest>
